@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: update targets of network scan
+      markuman.nessus.slow_task:
+        targets:
+          - 127.0.0.1
+        host: nessus.osuv.de
+        task: network scan
+        username: m
+        password: "{{ lookup('env', 'OSUV_NESSUS_PASSWORD') }}"
+        headless: false
