@@ -5,11 +5,9 @@
 
   tasks:
     - name: update targets of network scan
-      markuman.nessus.slow_task:
-        targets:
-          - 127.0.0.1
+      markuman.nessus.task:
+        targets: "{{ groups['all'] }}"
         host: nessus.osuv.de
         task: network scan
         username: m
         password: "{{ lookup('env', 'OSUV_NESSUS_PASSWORD') }}"
-        headless: false
